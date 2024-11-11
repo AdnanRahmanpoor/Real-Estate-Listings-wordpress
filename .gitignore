@@ -1,0 +1,43 @@
+# Ignore WordPress core files (if you're not modifying them)
+wp-admin/
+wp-includes/
+
+# Ignore content that is auto-generated
+wp-content/uploads/
+wp-content/cache/
+wp-content/backups/
+
+# Ignore configuration files (you may want to keep some of these out of the repo)
+wp-config.php
+wp-config-local.php
+
+# Ignore the WordPress database and session files
+*.sql
+*.sqlite
+*.log
+
+# Ignore PHP error logs
+php_errors.log
+
+# Ignore any temporary or backup files
+*.bak
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Ignore IDE/editor-specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore node_modules (if using npm or yarn for theme or plugin development)
+node_modules/
+
+# Ignore WordPress debug log (if you’re using WP_DEBUG)
+debug.log
+
+# Ignore build artifacts (if using build tools like Gulp, Webpack, etc.)
+dist/
+build/

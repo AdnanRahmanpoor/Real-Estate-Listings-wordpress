@@ -1,0 +1,206 @@
+.ast-container {
+	display: block !important;
+}
+
+/* Header with search form layout */
+.property-page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style for the search form */
+.property-search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.property-search-form input[type="text"],
+.property-search-form input[type="number"] {
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.property-search-form button {
+    padding: 8px 16px;
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.property-search-form button:hover {
+    background-color: #005a87;
+}
+
+/* Flexbox layout for the property list */
+.property-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+
+.property-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);  /* Slight hover effect */
+}
+
+.property-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.property-card p {
+    margin: 5px 0;
+}
+
+.property-card a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #0073e6;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Hover effect for cards */
+.property-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Ensure images fit properly */
+.property-image img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Styling for property details */
+.property-details {
+    text-align: center;
+}
+
+.property-price {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #0073aa;
+    margin: 10px 0;
+}
+
+.property-location, .property-size {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.property-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    color: #fff;
+    background-color: #0073aa;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.property-link:hover {
+    background-color: #005a87;
+}
+
+/* Responsive: 2 items per row on medium screens */
+@media (max-width: 768px) {
+    .property-card {
+        width: calc(50% - 20px); /* 2 items per row */
+    }
+}
+
+/* Responsive: 1 item per row on small screens */
+@media (max-width: 480px) {
+    .property-card {
+        width: 100%; /* 1 item per row */
+    }
+}
+
+/* Custom Hero Section Styling */
+.custom-hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background: url('https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for text readability */
+    border-radius: 8px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+		color: lightblue;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.hero-cta {
+    padding: 15px 30px;
+    background-color: #0073aa;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+.hero-cta:hover {
+    background-color: aliceblue;
+}
+
+.containern {
+    display: grid;  /* Use CSS Grid to lay out the property cards */
+    grid-template-columns: repeat(3, 1fr);  /* 3 columns in a row */
+    gap: 5px;  /* Space between the cards */
+    justify-content: center;  /* Center the grid */
+    margin-top: 30px;  /* Add space above the grid */
+}
+
+
+@media (max-width: 1024px) {
+    .property-listing-container {
+        grid-template-columns: repeat(2, 1fr);  /* 2 columns for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .property-listing-container {
+        grid-template-columns: 1fr;  /* 1 column for mobile */
+    }
+}
