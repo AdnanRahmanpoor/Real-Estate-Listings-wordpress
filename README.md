@@ -53,3 +53,142 @@ This project is a **Real Estate Property Listing Website** built using **WordPre
 
 6. View the site locally by navigating to your WordPress instance and inspecting the property listings and filtering functionality.
 
+To highlight the custom code and files you've modified for your WordPress project, you can add a section to your `README.md` that specifically mentions these customizations. Here’s an updated section to include in your `README.md` to showcase your work:
+
+### What I Customized
+
+Below are the files and sections where I made custom modifications:
+
+#### 1. **Theme Customizations**
+
+   - **`style.css`**: Customized the styles for the homepage and property listing page. Added custom CSS for the layout of the **hero section** and **property cards**.
+     - **Custom Styles**: Modified the layout to display properties in a **grid format** with a maximum of 3 cards per row.
+     - **Hero Section**: Customized the hero section to be the full-width banner on the homepage.
+
+   - **`functions.php`**: Added custom functionality for displaying properties using custom fields.
+     - **Custom Meta Fields**: Included the properties' custom fields for **location** and **price** using `get_post_meta()`.
+
+#### 2. **Custom Property Listing and Filtering**
+
+   - **`page-properties.php`** (or another page template depending on the theme setup):
+     - Created a **property listing page** that displays all properties.
+     - Added **filtering functionality** by allowing users to filter properties based on **location** and **price**.
+     - Used `WP_Query` with **meta_query** to fetch properties based on the selected filter criteria.
+     
+     **Code Example**:
+     ```php
+     <?php
+         // Custom Query for properties
+         $args = array(
+             'post_type' => 'property',
+             'posts_per_page' => -1, // Fetch all properties
+             'meta_query' => array(
+                 'relation' => 'AND',
+                 array(
+                     'key' => 'location',
+                     'value' => $location,
+                     'compare' => 'LIKE'
+                 ),
+                 array(
+                     'key' => 'price',
+                     'value' => $max_price,
+                     'type' => 'NUMERIC',
+                     'compare' => '<='
+                 ),
+             ),
+         );
+         $property_query = new WP_Query($args);
+
+         if ($property_query->have_posts()) :
+        echo '<div class="containern">';
+            while ($property_query->have_posts()) : $property_query->the_post();
+            ?>
+                <div class="property-card">
+                    <h2><?php the_title(); ?></h2>
+                    <?php if (has_post_thumbnail()) : ?>
+                        <div class="property-image">
+                            <?php the_post_thumbnail('medium'); ?>
+                        </div>
+                        <?php endif; ?>
+                        <div class="property-details">
+                            <div class="property-price">$<?php the_field('price'); ?></div>
+                            <div class="property-location"><?php the_field('location'); ?></div>
+                            <div class="property-size">Size: <?php the_field('size'); ?> sq ft</div>
+                            <a href="<?php the_permalink(); ?>" class="property-link">View Details</a>
+                           </div>
+                        </div>
+                     <?php
+            endwhile;
+            echo '</div>';
+        else:
+            echo '<p>No properties found matching your criteria.</p>';
+        endif;
+
+      wp_reset_postdata();
+
+     ?>
+     ```
+
+#### 3. **Custom Post Type: Property**
+
+   - Created a **Custom Post Type (CPT)** for `property`:
+     - The **properties** are created as a custom post type so that each listing has its own dedicated entry.
+     - Used custom fields to store **location** and **price** information.
+     
+     **Code Example**:
+     ```php
+     function register_property_post_type() {
+         $args = array(
+             'public' => true,
+             'label'  => 'Properties',
+             'supports' => array( 'title', 'editor', 'custom-fields' ),
+             'has_archive' => true,
+         );
+         register_post_type( 'property', $args );
+     }
+     add_action( 'init', 'register_property_post_type' );
+     ```
+
+#### 4. **Custom Property Card Layout**
+
+   - **HTML & CSS** for property cards:
+     - Modified the display of properties using custom cards that show the **property title**, **location**, **price**, and a **link to view details**.
+     - **CSS Grid** was used to create a responsive card layout with a maximum of **3 cards per row**.
+     
+     **Code Example**:
+     ```css
+     .property-card {
+         border: 1px solid #ddd;
+         padding: 15px;
+         margin: 10px;
+         text-align: center;
+         background-color: #f9f9f9;
+     }
+     
+     .property-card h2 {
+         font-size: 1.5em;
+         margin-bottom: 10px;
+     }
+     
+     .property-listing {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+         gap: 20px;
+     }
+     ```
+
+#### 5. **Hero Section Customization**
+
+   - **`front-page.php`**: Customized the homepage to display a **hero section** at the top with the main title and introduction to the real estate listings.
+     
+     **Code Example**:
+     ```php
+     <div class="hero-section">
+         <h1>Welcome to Our Real Estate Listings</h1>
+         <p>Browse through a variety of properties available for sale.</p>
+     </div>
+     ```
+
+#### 6. **WordPress Plugins Used**
+
+   - **Secure Custom Fields (SCF)**: Used to create and manage custom fields for properties (e.g., location, price).
